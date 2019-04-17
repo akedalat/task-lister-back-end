@@ -7,8 +7,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
+    user = User.new(user_params)
+    if user.save
     render json: user, status: 201
+  else
+    render json: {errors: user.errors.full_messages}
   end
 
   def update
@@ -28,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.permit(:name)
+    params.require(:user).permit(:name, :email, :password)
   end
 
   def set_user
