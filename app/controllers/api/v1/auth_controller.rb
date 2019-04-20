@@ -1,5 +1,6 @@
 class Api::V1::AuthController < ApplicationController
 
+
   def login
     @user = User.find_by(email: params[:email])
 
@@ -19,5 +20,6 @@ class Api::V1::AuthController < ApplicationController
       render json: {errors: "Login Failed!"}
     end
   end
+
 
 end
