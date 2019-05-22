@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render json: user, status: 201
     else
-      remder json:{errors: user.errors.full_messages}
+      render json:{errors: user.errors.full_messages}
     end
   end
 
